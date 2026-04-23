@@ -158,6 +158,7 @@ p {
   display: inline-block;
   padding: 0.85rem 2rem;
   border: 1px solid #1a1a1a;
+  border-radius: 999px;
   color: #1a1a1a;
   font-size: 0.875rem;
   letter-spacing: 0.1em;
@@ -168,6 +169,22 @@ p {
 .btn:hover {
   background-color: #1a1a1a;
   color: #ffffff;
+}
+
+.btn--primary {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.project-cta {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
 }
 
 /* ---------- Contact ---------- */
