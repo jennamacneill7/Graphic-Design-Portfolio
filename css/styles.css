@@ -316,7 +316,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 4rem 0 3rem;
+  padding: 1.75rem 0 2.5rem;
 }
 
 .project-header h1 {
@@ -334,6 +334,7 @@ p {
 }
 
 .project-back {
+  position: relative;
   display: inline-block;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
@@ -343,8 +344,27 @@ p {
   transition: color 0.2s ease;
 }
 
-.project-back:hover {
+.project-back::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background-color: #1a1a1a;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s ease;
+}
+
+.project-back:hover,
+.project-back:focus-visible {
   color: #1a1a1a;
+}
+
+.project-back:hover::after,
+.project-back:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .project-gallery {
@@ -394,6 +414,85 @@ main.container:has(.project-gallery) {
   max-width: 1800px;
   margin-left: calc(-47.5vw + 50%);
   margin-right: calc(-47.5vw + 50%);
+}
+
+/* ---------- Project pagination ---------- */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1.5rem;
+  padding: 2.5rem 0 5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.project-nav__link {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  max-width: 48%;
+  padding: 0.25rem 0;
+}
+
+.project-nav__link--prev {
+  margin-right: auto;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.project-nav__link--next {
+  margin-left: auto;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.project-nav__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  transition: color 0.2s ease;
+}
+
+.project-nav__title {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.project-nav__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background-color: #1a1a1a;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.project-nav__link--next .project-nav__title::after {
+  transform-origin: left center;
+}
+
+.project-nav__link--prev .project-nav__title::after {
+  transform-origin: right center;
+}
+
+.project-nav__link:hover .project-nav__title::after,
+.project-nav__link:focus-visible .project-nav__title::after {
+  transform: scaleX(1);
+}
+
+.project-nav__link:hover .project-nav__label,
+.project-nav__link:focus-visible .project-nav__label {
+  color: #1a1a1a;
 }
 
 /* ---------- Responsive ---------- */
@@ -447,5 +546,19 @@ main.container:has(.project-gallery) {
   .portfolio-card__title {
     transform: translateY(0);
     font-size: 1.5rem;
+  }
+
+  .project-nav {
+    padding: 2rem 0 3rem;
+    gap: 1rem;
+  }
+
+  .project-nav__title {
+    font-size: 0.95rem;
+  }
+
+  .project-nav__label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
   }
 }
