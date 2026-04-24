@@ -62,7 +62,7 @@ p {
 .site-header {
   background: #ffffff;
   padding: 1rem 2rem;
-  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.30);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -96,19 +96,30 @@ p {
 }
 
 .site-nav a {
+  position: relative;
   font-size: 1rem;
   font-weight: 400;
   color: #1a1a1a;
-  padding-bottom: 2px;
-  transition: opacity 0.2s ease;
 }
 
-.site-nav a:hover {
-  opacity: 0.6;
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background-color: #1a1a1a;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
-.site-nav a.active {
-  border-bottom: 1.5px solid #1a1a1a;
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-nav a.active::after {
+  transform: scaleX(1);
 }
 
 /* ---------- Footer ---------- */
@@ -355,6 +366,7 @@ p {
   transform: scaleX(0);
   transform-origin: right center;
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .project-back:hover,
@@ -475,6 +487,7 @@ main.container:has(.project-gallery) {
   background-color: #1a1a1a;
   transform: scaleX(0);
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .project-nav__link--next .project-nav__title::after {
